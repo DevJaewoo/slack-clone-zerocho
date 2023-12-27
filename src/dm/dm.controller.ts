@@ -1,4 +1,16 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 
-@Controller('dm')
-export class DmController {}
+@Controller('api/workspaces/:workspace/dms')
+export class DmController {
+  @Get(':id/chats')
+  getChats() {}
+
+  @Get(':id/unreads')
+  getUnreads() {}
+
+  @Post(':id/chats')
+  postChat() {}
+
+  @Post(':id/images')
+  uploadImage() {}
+}
