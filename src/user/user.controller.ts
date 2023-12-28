@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { User } from 'src/common/decorators/user.decorator';
-import { UserDto } from 'src/common/user.dto';
+import { UserDto } from 'src/common/dto/user.dto';
 import { UserService } from './user.service';
 import { RegisterRequestDto } from './dto/register.request.dto';
 
