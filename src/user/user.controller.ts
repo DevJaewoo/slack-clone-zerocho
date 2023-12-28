@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
+import { User } from 'src/common/decorators/user.decorator';
+import { UserDto } from 'src/common/user.dto';
 import { UserService } from './user.service';
 import { RegisterRequestDto } from './dto/register.request.dto';
-import { UserDto } from 'src/common/user.dto';
 
 @ApiTags('USERS')
 @Controller('api/users')
@@ -16,8 +17,8 @@ export class UserController {
     description: 'Success',
     type: UserDto,
   })
-  getUser(@Req() req: Request) {
-    return req.user;
+  getUser(@User() user) {
+    return user;
   }
 
   @Post()
@@ -28,7 +29,9 @@ export class UserController {
 
   @Post('login')
   @ApiOperation({ summary: '로그인' })
-  login() {}
+  login(@User() user) {
+    return user;
+  }
 
   @Post('logout')
   @ApiOperation({ summary: '로그아웃' })
