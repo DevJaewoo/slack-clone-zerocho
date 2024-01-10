@@ -7,12 +7,12 @@ import {
   ManyToOne,
   UpdateDateColumn,
 } from 'typeorm';
-import { Channels } from './Channels';
-import { Users } from './Users';
+import { Channel } from './Channel';
+import { User } from './User';
 
 @Index('UserId', ['UserId'], {})
-@Entity({ schema: 'sleact', name: 'channelmembers' })
-export class ChannelMembers {
+@Entity({ schema: 'sleact' })
+export class ChannelMember {
   @CreateDateColumn()
   createdAt: Date;
 
@@ -25,17 +25,17 @@ export class ChannelMembers {
   @Column('int', { primary: true, name: 'UserId' })
   UserId: number;
 
-  @ManyToOne(() => Channels, (channels) => channels.ChannelMembers, {
+  @ManyToOne(() => Channel, (channel) => channel.ChannelMembers, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
   @JoinColumn([{ name: 'ChannelId', referencedColumnName: 'id' }])
-  Channel: Channels;
+  Channel: Channel;
 
-  @ManyToOne(() => Users, (users) => users.ChannelMembers, {
+  @ManyToOne(() => User, (user) => user.ChannelMembers, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
   @JoinColumn([{ name: 'UserId', referencedColumnName: 'id' }])
-  User: Users;
+  User: User;
 }

@@ -8,13 +8,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Users } from './Users';
-import { Channels } from './Channels';
+import { User } from './User';
+import { Channel } from './Channel';
 
 @Index('UserId', ['UserId'], {})
 @Index('ChannelId', ['ChannelId'], {})
-@Entity({ schema: 'sleact', name: 'channelchats' })
-export class ChannelChats {
+@Entity({ schema: 'sleact' })
+export class ChannelChat {
   @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
   id: number;
 
@@ -33,17 +33,17 @@ export class ChannelChats {
   @Column('int', { name: 'ChannelId', nullable: true })
   ChannelId: number | null;
 
-  @ManyToOne(() => Users, (users) => users.ChannelChats, {
+  @ManyToOne(() => User, (user) => user.ChannelChats, {
     onDelete: 'SET NULL',
     onUpdate: 'CASCADE',
   })
   @JoinColumn([{ name: 'UserId', referencedColumnName: 'id' }])
-  User: Users;
+  User: User;
 
-  @ManyToOne(() => Channels, (channels) => channels.ChannelChats, {
+  @ManyToOne(() => Channel, (channel) => channel.ChannelChats, {
     onDelete: 'SET NULL',
     onUpdate: 'CASCADE',
   })
   @JoinColumn([{ name: 'ChannelId', referencedColumnName: 'id' }])
-  Channel: Channels;
+  Channel: Channel;
 }

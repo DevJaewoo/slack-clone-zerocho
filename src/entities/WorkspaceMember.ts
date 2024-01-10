@@ -7,12 +7,12 @@ import {
   ManyToOne,
   UpdateDateColumn,
 } from 'typeorm';
-import { Workspaces } from './Workspaces';
-import { Users } from './Users';
+import { Workspace } from './Workspace';
+import { User } from './User';
 
 @Index('UserId', ['UserId'], {})
-@Entity('workspacemembers', { schema: 'sleact' })
-export class WorkspaceMembers {
+@Entity({ schema: 'sleact' })
+export class WorkspaceMember {
   @CreateDateColumn()
   createdAt: Date;
 
@@ -28,17 +28,17 @@ export class WorkspaceMembers {
   @Column('datetime', { name: 'loggedInAt', nullable: true })
   loggedInAt: Date | null;
 
-  @ManyToOne(() => Workspaces, (workspaces) => workspaces.WorkspaceMembers, {
+  @ManyToOne(() => Workspace, (workspace) => workspace.WorkspaceMembers, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
   @JoinColumn([{ name: 'WorkspaceId', referencedColumnName: 'id' }])
-  Workspace: Workspaces;
+  Workspace: Workspace;
 
-  @ManyToOne(() => Users, (users) => users.WorkspaceMembers, {
+  @ManyToOne(() => User, (user) => user.WorkspaceMembers, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
   @JoinColumn([{ name: 'UserId', referencedColumnName: 'id' }])
-  User: Users;
+  User: User;
 }

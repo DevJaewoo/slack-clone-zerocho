@@ -8,14 +8,14 @@ import { DmModule } from './dm/dm.module';
 import { ChannelModule } from './channel/channel.module';
 import { WorkspaceModule } from './workspace/workspace.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ChannelChats } from './entities/ChannelChats';
-import { ChannelMembers } from './entities/ChannelMembers';
-import { Channels } from './entities/Channels';
-import { DMs } from './entities/DMs';
-import { Mentions } from './entities/Mentions';
-import { Users } from './entities/Users';
-import { WorkspaceMembers } from './entities/WorkspaceMembers';
-import { Workspaces } from './entities/Workspaces';
+import { ChannelChat } from './entities/ChannelChat';
+import { ChannelMember } from './entities/ChannelMember';
+import { Channel } from './entities/Channel';
+import { DM } from './entities/DM';
+import { Mention } from './entities/Mention';
+import { User } from './entities/User';
+import { WorkspaceMember } from './entities/WorkspaceMember';
+import { Workspace } from './entities/Workspace';
 
 @Module({
   imports: [
@@ -32,14 +32,14 @@ import { Workspaces } from './entities/Workspaces';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [
-        ChannelChats,
-        ChannelMembers,
-        Channels,
-        DMs,
-        Mentions,
-        Users,
-        WorkspaceMembers,
-        Workspaces,
+        ChannelChat,
+        ChannelMember,
+        Channel,
+        DM,
+        Mention,
+        User,
+        WorkspaceMember,
+        Workspace,
       ],
       synchronize: false,
       logging: true,

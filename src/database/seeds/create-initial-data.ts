@@ -1,15 +1,15 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { Workspaces } from '../../entities/Workspaces';
-import { Channels } from '../../entities/Channels';
-import { Users } from '../../entities/Users';
+import { Workspace } from '../../entities/Workspace';
+import { Channel } from '../../entities/Channel';
+import { User } from '../../entities/User';
 
 export default class UserSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
-    const workspacesRepository = dataSource.getRepository(Workspaces);
+    const workspacesRepository = dataSource.getRepository(Workspace);
     await workspacesRepository.insert([
       {
         id: 1,
@@ -17,7 +17,7 @@ export default class UserSeeder implements Seeder {
         url: 'sleact',
       },
     ]);
-    const channelsRepository = dataSource.getRepository(Channels);
+    const channelsRepository = dataSource.getRepository(Channel);
     await channelsRepository.insert([
       {
         id: 1,
@@ -27,6 +27,6 @@ export default class UserSeeder implements Seeder {
       },
     ]);
 
-    await factoryManager.get(Users).saveMany(5);
+    await factoryManager.get(User).saveMany(5);
   }
 }
