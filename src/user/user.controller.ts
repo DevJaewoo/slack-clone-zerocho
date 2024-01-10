@@ -23,8 +23,8 @@ export class UserController {
 
   @Post()
   @ApiOperation({ summary: '회원가입' })
-  register(@Body() data: RegisterRequestDto) {
-    this.userService.register(data.email, data.nickname, data.password);
+  async register(@Body() data: RegisterRequestDto) {
+    await this.userService.register(data.email, data.nickname, data.password);
   }
 
   @Post('login')
