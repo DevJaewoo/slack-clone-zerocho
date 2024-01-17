@@ -17,21 +17,6 @@ export class UserService {
     nickname: string,
     password: string,
   ): Promise<number> {
-    if (!email) {
-      throw new HttpException('이메일을 입력해주세요.', HttpStatus.BAD_REQUEST);
-    }
-
-    if (!nickname) {
-      throw new HttpException('닉네임을 입력해주세요.', HttpStatus.BAD_REQUEST);
-    }
-
-    if (!password) {
-      throw new HttpException(
-        '비밀번호를 입력해주세요.',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-
     const duplicateUser = await this.userRepository.findOne({
       where: { email },
     });
