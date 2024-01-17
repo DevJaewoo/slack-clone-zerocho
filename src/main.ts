@@ -5,12 +5,14 @@ import session from 'express-session';
 import passport from 'passport';
 import { AppModule } from './app.module';
 import { UndefinedToNullInterceptor } from './common/interceptors/undefinedToNull.interceptor';
+import { HttpExceptionFilter } from './httpException.filter';
 
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalInterceptors(new UndefinedToNullInterceptor());
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle('Sleact API')
